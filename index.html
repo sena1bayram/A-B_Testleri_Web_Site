@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LotusAI Haberleri</title>
-    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-remote-config.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -187,68 +185,47 @@
             LotusAI, yeni yapay zeka tabanlı çözümleriyle iş dünyasında devrim yaratıyor. Firmanın son geliştirdiği yazılım, veri analizi ve makine öğrenmesi alanlarında büyük kolaylık sağlıyor. LotusAI'nin yaratıcı çözümleri, şirketlerin operasyonel verimliliklerini artırarak sektörlerinde öne çıkmalarını sağlıyor. 
         </p>
         <p>
-            LotusAI'nin geliştirdiği yapay zeka araçları, verileri analiz ederek şirketlerin stratejik kararlar almasına yardımcı oluyor. Bu teknolojiler, yalnızca büyük şirketler için değil, küçük ve orta ölçekli işletmeler için de erişilebilir hale geldi. Ayrıca, AI tabanlı çözümler, kullanıcıların daha hızlı ve doğru sonuçlar elde etmelerini sağlıyor.
+            LotusAI'nin geliştirdiği yapay zeka araçları, verileri analiz ederek şirketlerin stratejik kararlar almasına yardımcı oluyor. Bu teknolojiler, yalnızca büyük şirketler için değil, küçük ve orta ölçekli işletmeler için de erişilebilir hale geldi. Ayrıca, AI tabanlı çözümler, kullanıcıların geçmiş verilerle tahminlerde bulunmalarına olanak tanıyor.
         </p>
-        <a href="#" class="read-more">Devamını Oku</a>
+        <a href="#" class="read-more">Haberin Devamı İçin Tıklayın</a>
     </div>
-</div>
 
-<div class="subscribe-section">
-    <h3>Haberlerimize Abone Olun</h3>
-    <div class="button-container">
-        <input type="email" placeholder="E-posta adresinizi girin" required>
-        <button class="red-button">Abone Ol</button>
-        <button class="white-button">Gönder</button>
+    <div class="article">
+        <img src="C:\Users\senao\OneDrive\Masaüstü\LOTUS AB TESTİ\sena\Screenshot 2024-12-12 102921.png" alt="Yapay Zeka Çözümü">
+        <h2>LotusAI'nin Yeni Çözümü, Sağlık Sektöründe Çığır Açıyor</h2>
+        <p>
+            LotusAI'nin sağlık sektörü için geliştirdiği yapay zeka tabanlı yazılım, hastalıkların erken teşhisi için önemli bir adım atıyor. AI destekli analizler, doktorların hasta verilerini daha hızlı ve doğru bir şekilde değerlendirmelerine yardımcı oluyor. Bu sayede, tedavi süreçlerinde zaman kazanılıyor ve daha etkili sonuçlar elde ediliyor.
+        </p>
+        <p>
+            Yapay zeka, sağlık verilerini analiz ederek, hastalıkların erken dönemlerini tespit edebiliyor. LotusAI'nin bu çözümü, hastaların daha hızlı tedavi edilmesini sağlıyor. Sağlık sektöründeki bu devrimci adım, LotusAI'nin liderliğini pekiştiriyor.
+        </p>
+        <a href="#" class="read-more">Haberin Devamı İçin Tıklayın</a>
+    </div>
+
+    <div class="subscribe-section">
+        <h3>Haber Bültenimize Abone Olun!</h3>
+        <p>LotusAI'nin yenilikçi çözümleri hakkında daha fazla bilgi almak için abone olun.</p>
+        <input type="email" id="email" placeholder="E-posta adresinizi girin" required>
+        <div class="button-container">
+            <button class="red-button" onclick="subscribe()">Abone Ol</button>
+            <button class="white-button" onclick="subscribe()">Abone Ol</button>
+        </div>
     </div>
 </div>
 
 <footer>
-    <p>&copy; 2024 LotusAI - Tüm hakları saklıdır.</p>
+    <p>&copy; 2024 LotusAI. Tüm Hakları Saklıdır.</p>
 </footer>
 
 <script>
-    // Firebase yapılandırma bilgilerini buraya ekleyin
-    const firebaseConfig = {
-        apiKey: "AIzaSyAEaIhkvzAqR7_soAuF06mWf2onfDMzPQA",
-        authDomain: "abtesti.firebaseapp.com",
-        projectId: "abtesti",
-        storageBucket: "abtesti.firebasestorage.app",
-        messagingSenderId: "270720675628",
-        appId: "1:270720675628:web:26cbcd25d4f95051628689",
-        measurementId: "G-NWC4MR6T2Z"
-    };
-
-    // Firebase'i başlatın
-    const app = firebase.initializeApp(firebaseConfig);
-    const remoteConfig = firebase.remoteConfig();
-    remoteConfig.settings = {
-        minimumFetchIntervalMillis: 3600000, // 1 saat
-    };
-
-    // Firebase'den Remote Config verisini alıp butonları güncelleme
-    remoteConfig.fetchAndActivate()
-        .then(() => {
-            const buttonColor = remoteConfig.getValue('button_color').asString();
-
-            // Butonları renklerine göre ayarlama
-            const redButton = document.querySelector('.red-button');
-            const whiteButton = document.querySelector('.white-button');
-
-            if (buttonColor === 'red') {
-                redButton.style.backgroundColor = '#fe654d';
-                whiteButton.style.backgroundColor = 'white';
-                whiteButton.style.color = '#333';
-                whiteButton.style.border = '2px solid #333';
-            } else {
-                redButton.style.backgroundColor = 'white';
-                redButton.style.color = '#333';
-                redButton.style.border = '2px solid #333';
-                whiteButton.style.backgroundColor = '#fe654d';
-            }
-        })
-        .catch((error) => {
-            console.error("Remote Config fetch failed: ", error);
-        });
+    function subscribe() {
+        const email = document.getElementById('email').value;
+        if (email) {
+            alert('E-posta adresiniz başarıyla alındı: ' + email);
+        } else {
+            alert('Lütfen geçerli bir e-posta adresi girin.');
+        }
+    }
 </script>
 
 </body>
